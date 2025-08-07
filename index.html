@@ -12,6 +12,7 @@
       rel="stylesheet"
     />
     <script src="script.js" defer></script>
+    <script src="formLogic.js" defer></script>
   </head>
   <body>
     <header class="header-all">
@@ -476,7 +477,20 @@
       </div>
       <div class="movie_gallery">
         <div id="movie_page" class="gallery_container"></div>
+        <div
+          id="noResultsMessage"
+          style="
+            display: none;
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            color: #555;
+          "
+        ></div>
         <button id="loadMoreBtn" class="load-more-btn">Load More</button>
+        <div class="floating-search-container" id="floatingSearchContainer">
+          <button type="submit" class="search-button">Search</button>
+        </div>
       </div>
     </section>
     <footer class="main-footer">

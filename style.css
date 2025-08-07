@@ -512,11 +512,6 @@ header li a {
   border-radius: 2px;
 }
 
-/* Special case for the gray "user votes" slider */
-.range-slider-track.gray-track .range-slider-progress {
-  background-color: #b3b3b3;
-}
-
 /* The circular handles/thumbs */
 .range-slider-thumb {
   position: absolute;
@@ -1128,4 +1123,50 @@ header li a {
 
 .load-more-btn:hover {
   background-color: #019ac4;
+}
+
+/* --- State: Inactive (Default) --- */
+.search-button {
+  background-color: #e4e4e4;
+  color: #acacac;
+  cursor: not-allowed;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  font-size: 1.1em;
+  font-weight: 700;
+  padding: 10px 0;
+  width: 100%;
+}
+
+/* --- State: Active --- */
+.search-button.active {
+  background: #01b4e4;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* --- Floating Button Container --- */
+.floating-search-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  /* Styling to lift it off the page */
+  background-color: #fff;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+
+  /* Start hidden and transition smoothly */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: visibility 0.3s, opacity 0.3s, transform 0.3s;
+  z-index: 100; /* High z-index to appear above everything */
+}
+
+/* --- Floating Button Visibility --- */
+.floating-search-container.visible {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
