@@ -10,11 +10,15 @@
   --dropdown-border: #e3e3e3;
   --tmdbLightBlue: 1, 180, 228;
   --lightBlueRadio: #01b3e4;
+  --light-green: #21d07a;
+  --light-yellow: #d2d531;
+  --light-red: #db2360;
+  --light-gray: #666666;
 }
 
 body {
   flex-direction: column;
-  background-color: rgba(var(--tmdbDarkBlue), 1);
+  background-color: white;
   color: #000;
   font-family: "Source Sans 3", Arial, sans-serif;
   font-size: 1rem;
@@ -36,8 +40,16 @@ body {
 
 .main {
   display: flex;
-  flex-direction: row;
-  gap: 10px;
+
+  /* This sets the maximum width of the entire content block */
+  max-width: 100%;
+
+  /* This is the key to centering the block on the page */
+  margin: 0 auto;
+
+  /* This adds space on the sides for smaller screens */
+  padding: 30px;
+  gap: 30px;
 }
 .movies {
   font-size: 16px;
@@ -410,6 +422,181 @@ header li a {
   position: relative;
 }
 
+/* Container for each new filter section */
+.filter-section {
+  padding: 14px 16px 16px;
+  border-top: 1px solid #e3e3e3;
+}
+
+.filter-section h3 {
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+}
+
+.filter-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+.filter-title h3 {
+  margin-bottom: 0;
+}
+.tooltip {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #888;
+  border: 1px solid #888;
+  border-radius: 50%;
+  cursor: help;
+}
+
+/* Custom Language Dropdown */
+.custom-select-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e9ecef;
+  padding: 10px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #333;
+}
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #000;
+}
+
+/* Range Slider Styles */
+/* Main container for a slider */
+.range-slider {
+  position: relative;
+  height: 50px;
+  padding-top: 10px;
+}
+
+.range-labels {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85em;
+  color: #555;
+}
+
+/* The gray/background bar of the slider */
+.range-slider-track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background-color: #ddd;
+  border-radius: 2px;
+}
+
+/* The colored progress part of the track */
+.range-slider-progress {
+  position: absolute;
+  height: 100%;
+  background-color: var(--lightBlueRadio);
+  border-radius: 2px;
+}
+
+/* Special case for the gray "user votes" slider */
+.range-slider-track.gray-track .range-slider-progress {
+  background-color: #b3b3b3;
+}
+
+/* The circular handles/thumbs */
+.range-slider-thumb {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: var(--lightBlueRadio);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 2; /* Ensures thumbs are clickable and above other elements */
+}
+
+/* The container for the tick marks */
+/* Container for the ticks */
+.range-slider-ticks {
+  position: absolute;
+  top: 19px; /* This positions the container's center on the track's center */
+  left: 8px; /* Half the width of a thumb */
+  right: 8px; /* Half the width of a thumb */
+  height: 1px; /* The container itself doesn't need height */
+  z-index: 1;
+}
+
+.range-slider-ticks ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* This is key for vertical centering */
+}
+
+/* Base style for ALL tick marks (li) */
+.range-slider-ticks li {
+  width: 1px;
+  height: 6px; /* Default height for shorter ticks */
+  background-color: #d8d8d8;
+}
+
+/* Style for the taller, major ticks */
+.range-slider-ticks li.major-tick {
+  height: 10px; /* Taller height */
+}
+
+/* Keywords Input */
+.keywords-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9em;
+  box-sizing: border-box; /* Important */
+}
+
+/* Search Button */
+.search-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: -1px; /* Aligns with the panel above */
+  border: 1px solid #e3e3e3;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 1.2em;
+  font-weight: 600;
+  border-radius: 0 0 var(--imageBorderRadius) var(--imageBorderRadius);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.search-button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Hide the old button */
+.apply-filters-btn {
+  display: none;
+}
 .card {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(var(--lightGrey), 1);
@@ -758,61 +945,187 @@ header li a {
 }
 
 /* Movie Gallery Poster Layout */
-.movie_gallery {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  border-radius: var(--imageBorderRadius);
+
+.gallery-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 25px;
+  text-align: left;
 }
 
 .gallery_container {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  justify-content: flex-start;
-  padding: 15px;
-  background-color: #fff;
-  max-width: 860px;
+  justify-content: space-between;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .media_item {
-  width: 160px;
-  height: 240px;
-  background-color: rgba(var(--tmdbLightBlue), 0.7);
-  border-radius: var(--imageBorderRadius);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease;
+  width: calc(20% - 16px);
+  min-width: 160px;
+  background-color: #fff;
   position: relative;
+  margin-bottom: 10px;
+  border: 1px solid #e3e3e3;
+  border-radius: var(--imageBorderRadius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  flex: 0 0 160px;
 }
 
-.media_item:hover {
-  transform: scale(1.05);
+.poster_wrapper {
+  position: relative;
 }
 
-.poster_style {
-  /* Gradient for poster effect */
-  background: linear-gradient(
-    135deg,
-    rgba(var(--tmdbLightBlue), 0.9),
-    rgba(var(--tmdbDarkBlue), 0.7)
-  );
+.movie_poster {
+  width: 100%;
+  height: 240px;
+  border-radius: var(--image-border-radius);
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px Bpx rgba(0, 0, 0, 0.1);
 }
 
-.media_item::before {
-  content: attr(data-title);
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
-  color: #fff;
+.poster_content {
+  padding-top: 26px;
+  padding-left: 5px;
+  text-align: left;
+}
+
+.movie_title {
+  font-weight: 700;
+  font-size: 1em;
+  color: #000;
+  text-decoration: none;
+  display: block;
+}
+
+.release_date {
   font-size: 0.9em;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  background: rgba(0, 0, 0, 0.3);
-  padding: 2px 5px;
-  border-radius: 3px;
+  color: #666;
+}
+
+/* === CORRECTED RATING CIRCLE STYLES === */
+.rating-circle {
+  position: absolute;
+  bottom: -19px; /* Position half-in, half-out at the bottom */
+  left: 10px;
+  width: 42px;
+  height: 42px;
+  background-color: #081c22;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.rating-circle svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* Start circle from the top */
+}
+
+.rating-circle svg circle {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.rating-bg {
+  stroke: #204529; /* Dark track behind the progress indicator */
+  stroke-opacity: 0.5;
+}
+
+/* Solid colors for rating indicator */
+.rating-indicator.high-rating {
+  stroke: var(--light-green);
+}
+.rating-indicator.medium-rating {
+  stroke: var(--light-yellow);
+}
+.rating-indicator.low-rating {
+  stroke: var(--light-red);
+}
+.rating-indicator.no-rating {
+  stroke: var(--light-gray);
+}
+
+.rating-value {
+  color: white;
+  font-size: 1em;
+  font-weight: 700;
+  z-index: 1; /* Ensures text is on top of SVG */
+}
+
+.rating-value sup {
+  font-size: 0.6em;
+  font-weight: 400;
+}
+
+@media (max-width: 1200px) {
+  .main {
+    /* On medium screens, let the content get a bit wider */
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    padding: 15px;
+    margin-top: 64px;
+  }
+
+  .header-flex {
+    padding: 0 15px;
+  }
+
+  /* Hide desktop-only elements */
+  .side-section,
+  .nav-list,
+  .plus-icon,
+  .lang-box,
+  .dropdown {
+    /* Also hide dropdowns */
+    display: none;
+  }
+
+  .user-actions {
+    gap: 15px; /* Adjust gap for remaining icons */
+  }
+
+  /* Ensure the movie gallery takes full width on mobile */
+  .movie_gallery {
+    width: 100%;
+  }
+
+  /* Reset the gallery container to a simple block for the vertical list */
+  .gallery_container.mobile {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+.load-more-btn {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  margin-top: 30px;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #fff;
+  background-color: #01b4e4;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.load-more-btn:hover {
+  background-color: #019ac4;
 }
