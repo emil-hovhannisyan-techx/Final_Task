@@ -1,18 +1,44 @@
 :root {
   --tmdbDarkBlue: 3, 37, 65;
   --maxPrimaryPageWidth: 1400px;
+  --black: black;
+  --header-text-color: #fff;
+  --border-grey: rgba(33, 37, 41, 0.2);
+  --imageBorderRadius: 8px;
+  --lightGrey: 227, 227, 227;
+  --dropdown-bg: #fff;
+  --dropdown-border: #e3e3e3;
+  --tmdbLightBlue: 1, 180, 228;
+  --lightBlueRadio: #01b3e4;
 }
 
 body {
   flex-direction: column;
   background-color: rgba(var(--tmdbDarkBlue), 1);
   color: #000;
-  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-family: "Source Sans 3", Arial, sans-serif;
   font-size: 1rem;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
 .movies {
   font-size: 16px;
 }
@@ -71,9 +97,9 @@ body {
   list-style-type: none;
 }
 
-li a {
+header li a {
   text-decoration: none;
-  color: white;
+  color: var(--header-text-color);
 }
 
 .nav-wrapper {
@@ -122,6 +148,7 @@ li a {
   min-height: 32px;
   box-sizing: border-box;
 }
+
 .lang-box:hover {
   cursor: pointer;
   color: rgba(var(--tmdbDarkBlue), 1);
@@ -149,8 +176,9 @@ li a {
   list-style: none;
   padding: 0;
   min-width: 150px;
+  border-color: var(--border-grey);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  border-radius: 0.5rem;
   z-index: 100;
 }
 
@@ -164,7 +192,7 @@ li a {
   background-color: #f0f0f0;
 }
 
-.nav-item:focus .dropdown {
+.nav-item:hover .dropdown {
   display: block;
 }
 
@@ -213,10 +241,6 @@ li a {
   }
 }
 
-.main {
-  margin-top: 100px;
-}
-
 /* footer */
 
 .main-footer {
@@ -232,6 +256,7 @@ li a {
   background-size: cover;
   background-repeat: no-repeat;
   padding: 0;
+  margin-bottom: 0;
 }
 
 .main-footer nav {
@@ -239,7 +264,7 @@ li a {
   justify-content: center;
   align-items: flex-start;
   gap: 40px;
-  padding: 80px 0;
+  padding: 40px 0 0 0; /* Reduce bottom padding to 0 */
   color: #fff;
   max-width: 1400px;
   margin: 0 auto;
@@ -274,6 +299,7 @@ li a {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   text-align: center;
 }
+
 .footer-join-btn:hover {
   background: #e6f7fd;
   color: #007ea7;
@@ -282,6 +308,7 @@ li a {
 .footer-col {
   min-width: 180px;
 }
+
 .footer-col h4 {
   color: #fff;
   font-size: 1.2em;
@@ -289,26 +316,503 @@ li a {
   margin-bottom: 12px;
   letter-spacing: 0.5px;
 }
+
 .footer-col ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .footer-col ul li {
   margin-bottom: 8px;
 }
+
 .footer-col ul li a {
   color: #fff;
   text-decoration: none;
   font-size: 1em;
   transition: color 0.2s;
 }
-.footer-col ul li a:hover {
-  color: #01b4e4;
-}
 
 .join-us {
   text-align: right;
   position: relative;
   top: -36px;
+}
+
+.sidebar {
+  width: 16.25rem;
+}
+.main {
+  background-color: white;
+  padding: 30px 40px;
+  margin-top: 64px;
+}
+
+.filter {
+  width: 100%;
+  border-top: 1px solid #eee;
+  padding: 14px 16px 16px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter_radio {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter_radio label {
+  display: flex;
+  align-items: center;
+}
+.filter_radio input[type="radio"] {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid;
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.filter_radio input[type="radio"]:checked {
+  border: 8px solid var(--lightBlueRadio);
+  background-color: transparent;
+}
+
+.filter_radio input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.filter_radio input[type="radio"]:not(:checked)::after {
+  content: none;
+}
+.filter_panel {
+  min-width: 260px;
+  width: 260px;
+  border: 1px solid #e3e3e3;
+  border-radius: var(--imageBorderRadius);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: visible;
+  position: relative;
+}
+
+.card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(var(--lightGrey), 1);
+  background-color: #fff;
+}
+
+.name {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 14px 16px;
+}
+
+.name h2 {
+  display: inline-flex;
+  font-size: 1.1rem;
+  justify-content: space-between;
+  padding-right: 10px;
+  width: 100%;
+  margin: 0;
+}
+
+.glyphicons_v2 {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  min-width: 1em;
+  width: 1em;
+  min-height: 1em;
+  height: 1em;
+  line-height: inherit;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+.chevron-right {
+  width: 16px;
+  height: 16px;
+}
+
+.filter_panel.card h3 {
+  align-items: center;
+  width: 100%;
+  font-size: 1em;
+  font-weight: 300;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+#sortToggle {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e3e3e3;
+  position: relative;
+  z-index: 10;
+}
+
+#chevron {
+  transition: 0.3s ease;
+  width: 16px;
+  height: 16px;
+}
+
+#chevron.rotated {
+  transform: rotate(90deg);
+}
+
+#sortOptions {
+  padding: 14px 16px 16px;
+  background-color: #fff;
+  border: 1px solid #e3e3e3;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  display: none;
+  position: relative;
+  z-index: 9;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  user-select: none;
+  z-index: 11;
+}
+
+.select-selected {
+  background-color: #e9ecef;
+  padding: 10px 16px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 12;
+}
+
+.select-selected:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #000;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.select-items {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 15;
+  display: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-height: 200px;
+  overflow-y: auto;
+  background-clip: padding-box;
+  opacity: 1;
+}
+
+.select-items div {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.select-items div:hover {
+  background-color: #a5a5a5;
+}
+.select-items .selected {
+  background-color: rgba(var(--tmdbLightBlue), 1);
+  color: white;
+  font-weight: bold;
+}
+.select-items .selected:hover {
+  background-color: rgba(var(--tmdbLightBlue), 1);
+  color: white;
+}
+#sortOptions.active {
+  display: block;
+}
+
+#mainSelect.active .select-items {
+  display: block;
+  z-index: 14;
+}
+
+/*filter*/
+.chevron-right-filter {
+  transition: 0.3s ease;
+  width: 16px;
+  height: 16px;
+}
+
+.rotated {
+  transform: rotate(90deg);
+}
+
+/*Release dates*/
+#release-dates-panel .date-range {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+#release-dates-panel .date-field {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+#release-dates-panel .date-field label {
+  font-size: 0.9em;
+  color: #666;
+  min-width: 30px;
+}
+
+#release-dates-panel .input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 150px;
+}
+
+#release-dates-panel .input-wrapper input[type="text"] {
+  padding: 8px 30px 8px 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.9em;
+  width: 100%;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+#release-dates-panel .input-wrapper .calendar-btn {
+  position: absolute;
+  right: 0;
+  width: 37.5px;
+  height: 100%;
+  border: none;
+  background: #dee2e6
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>')
+    no-repeat center;
+  background-size: 20px 20px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
+#release-dates-panel .input-wrapper .calendar-btn:hover {
+  background-color: #ced4da;
+}
+
+/* Light blue border on focus */
+#release-dates-panel .input-wrapper input[type="text"]:focus {
+  border-color: var(--lightBlueRadio);
+  outline: none;
+}
+
+/* Preserve existing checkbox styling for this panel */
+#release-dates-panel input[type="checkbox"] {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid #01b3e4;
+  border-radius: 4px;
+  margin-right: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+#release-dates-panel input[type="checkbox"]:checked {
+  background-color: #01b3e4;
+}
+
+#release-dates-panel input[type="checkbox"]:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 0.8em;
+}
+.release_details {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
+/* Style the Apply Filters button */
+.apply-filters-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #01b3e4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.apply-filters-btn:hover {
+  background-color: #019ac4;
+}
+
+.filter_genres {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  gap: 10px;
+  padding: 14px 16px 16px 16px;
+  border-top: 1px solid #eee;
+}
+
+.genre-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.genre-checkbox-group label {
+  cursor: pointer;
+}
+
+.genre-checkbox-group input[type="checkbox"] {
+  display: none;
+}
+
+.genre-checkbox-group span {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #000;
+  font-size: 0.9em;
+  transition: 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect */
+.genre-checkbox-group label:hover span {
+  background-color: rgba(var(--tmdbLightBlue), 1);
+  color: white;
+}
+
+/* Checked effect */
+.genre-checkbox-group input[type="checkbox"]:checked + span {
+  background-color: rgba(var(--tmdbLightBlue), 1);
+  color: white;
+}
+
+.filter_certification {
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-grey);
+}
+
+.filter_certification h3 {
+  padding-left: 16px;
+}
+
+/* Filter releases*/
+.hidden {
+  display: none;
+}
+
+/* Movie Gallery Poster Layout */
+.movie_gallery {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: var(--imageBorderRadius);
+}
+
+.gallery_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: flex-start;
+  padding: 15px;
+  background-color: #fff;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.media_item {
+  width: 160px;
+  height: 240px;
+  background-color: rgba(var(--tmdbLightBlue), 0.7);
+  border-radius: var(--imageBorderRadius);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 160px;
+}
+
+.media_item:hover {
+  transform: scale(1.05);
+}
+
+.poster_style {
+  /* Gradient for poster effect */
+  background: linear-gradient(
+    135deg,
+    rgba(var(--tmdbLightBlue), 0.9),
+    rgba(var(--tmdbDarkBlue), 0.7)
+  );
+}
+
+.media_item::before {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  color: #fff;
+  font-size: 0.9em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 5px;
+  border-radius: 3px;
 }

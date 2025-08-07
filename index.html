@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>zlxk</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="script.js" defer></script>
   </head>
   <body>
     <header class="header-all">
@@ -83,6 +90,285 @@
 
     <section class="main">
       <h2 class="title">Popular Movies</h2>
+      <form class="sidebar">
+        <div class="filter_panel card">
+          <div class="name" id="sortToggle">
+            <h2>Sort</h2>
+            <img
+              src="/assets/sidebar/right-sign.svg"
+              alt="Chevron Right"
+              class="chevron-right"
+              id="chevron"
+            />
+          </div>
+          <div class="filter" id="sortOptions">
+            <h3>Sort Results By</h3>
+            <div class="custom-select" id="mainSelect">
+              <div class="select-selected" id="selectedSort">
+                Popularity Descending
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="filter_panel card">
+          <div class="name" id="filterToggle">
+            <h2>Filters</h2>
+            <img
+              src="/assets/sidebar/right-sign.svg"
+              alt="Chevron Right"
+              class="chevron-right-filter"
+              id="chevron-filter"
+            />
+          </div>
+
+          <!-- START of collapsible container -->
+          <div class="filter" id="filterOptions">
+            <div class="filter_radio">
+              <h3>Show Me</h3>
+              <label>
+                <input type="radio" name="show" value="everything" checked />
+                Everything
+              </label>
+              <label>
+                <input type="radio" name="show" value="haven't_seen" /> Movies I
+                Haven't Seen
+              </label>
+              <label>
+                <input type="radio" name="show" value="have_seen" /> Movies I
+                Have Seen
+              </label>
+            </div>
+
+            <div id="release-dates-panel">
+              <h3>Release Dates</h3>
+              <div class="filter_releases">
+                <!-- Master -->
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="searchAllReleases" checked />
+                  Search all releases?
+                </label>
+
+                <!-- Hidden until unchecked -->
+                <div id="releaseDetails" class="release_details hidden">
+                  <label for="searchAllCountries" class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      id="searchAllCountries"
+                      name="searchAllCountries"
+                    />
+                    Search all countries?
+                  </label>
+
+                  <label
+                    for="release_theatrical_limited"
+                    class="custom-checkbox"
+                  >
+                    <input
+                      type="checkbox"
+                      id="release_theatrical_limited"
+                      name="releaseTypes"
+                      value="Theatrical (limited)"
+                    />
+                    Theatrical (limited)
+                  </label>
+                  <label for="release_theatrical" class="custom-checkbox">
+                    <input
+                      id="release_theatrical"
+                      type="checkbox"
+                      value="Theatrical"
+                      name="releaseTypes"
+                    />
+                    Theatrical
+                  </label>
+                  <label for="release_premiere" class="custom-checkbox">
+                    <input
+                      id="release_premiere"
+                      type="checkbox"
+                      value="Premiere"
+                      name="releaseTypes"
+                    />
+                    Premiere
+                  </label>
+                  <label for="release_digital" class="custom-checkbox">
+                    <input
+                      id="release_digital"
+                      type="checkbox"
+                      value="Digital"
+                      name="releaseTypes"
+                    />
+                    Digital
+                  </label>
+                  <label for="release_physical" class="custom-checkbox">
+                    <input
+                      id="release_physical"
+                      type="checkbox"
+                      value="Physical"
+                      name="releaseTypes"
+                    />
+                    Physical
+                  </label>
+                  <label for="release_tv" class="custom-checkbox">
+                    <input
+                      id="release_tv"
+                      type="checkbox"
+                      value="TV"
+                      name="releaseTypes"
+                    />
+                    TV
+                  </label>
+                </div>
+              </div>
+              <div class="date-range">
+                <div class="date-field">
+                  <label for="from-date">from</label>
+                  <div class="input-wrapper">
+                    <input
+                      type="text"
+                      id="from-date"
+                      placeholder="mm/dd/yyyy"
+                    />
+                    <button
+                      type="button"
+                      class="calendar-btn"
+                      data-for="from-date"
+                      aria-label="Open calendar"
+                    ></button>
+                  </div>
+                </div>
+                <div class="date-field">
+                  <label for="to-date">to</label>
+                  <div class="input-wrapper">
+                    <input type="text" id="to-date" value="06/02/2026" />
+                    <button
+                      type="button"
+                      class="calendar-btn"
+                      data-for="to-date"
+                      aria-label="Open calendar"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="filter_genres">
+              <h3>Genres</h3>
+              <div class="genre-checkbox-group">
+                <label>
+                  <input type="checkbox" name="genres" value="Action" />
+                  <span>Action</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Adventure" />
+                  <span>Adventure</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Animation" />
+                  <span>Animation</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Comedy" />
+                  <span>Comedy</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Crime" />
+                  <span>Crime</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Documentary" />
+                  <span>Documentary</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Drama" />
+                  <span>Drama</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Family" />
+                  <span>Family</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Fantasy" />
+                  <span>Fantasy</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="History" />
+                  <span>History</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Horror" />
+                  <span>Horror</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Music" />
+                  <span>Music</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Mystery" />
+                  <span>Mystery</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Romance" />
+                  <span>Romance</span>
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="genres"
+                    value="Science Fiction"
+                  />
+                  <span>Science Fiction</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="TV Movie" />
+                  <span>TV Movie</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Thriller" />
+                  <span>Thriller</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="War" />
+                  <span>War</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="genres" value="Western" />
+                  <span>Western</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="filter_certification">
+              <h3>Certification</h3>
+            </div>
+          </div>
+
+          <!-- END of collapsible container -->
+        </div>
+
+        <button type="submit" class="apply-filters-btn">Apply Filters</button>
+      </form>
+      <div class="movie_gallery">
+        <div id="movie_page" class="gallery_container">
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+          <div class="media_item poster_style"></div>
+        </div>
+      </div>
     </section>
     <footer class="main-footer">
       <nav>
