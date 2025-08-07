@@ -425,7 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSliderAppearance();
   });
 
-  // --- SIDEBAR UI TOGGLES (Your original working code) ---
+  // --- SIDEBAR UI TOGGLES  ---
   const sortToggle = document.getElementById("sortToggle"),
     sortOptions = document.getElementById("sortOptions"),
     chevron = document.getElementById("chevron"),
