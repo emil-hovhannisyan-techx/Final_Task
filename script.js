@@ -496,8 +496,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   document.addEventListener("click", function (e) {
-    if (mainSelect && !mainSelect.contains(e.target))
-      mainSelect.classList.remove("active");
     if (
       sortOptions &&
       sortToggle &&
@@ -507,16 +505,6 @@ document.addEventListener("DOMContentLoaded", () => {
       sortOptions.classList.remove("active");
       sortOptions.style.display = "none";
       chevron && chevron.classList.remove("rotated");
-    }
-    if (
-      filterOptions &&
-      filterToggle &&
-      !filterToggle.contains(e.target) &&
-      !filterOptions.contains(e.target)
-    ) {
-      filterOptions.classList.remove("active");
-      filterOptions.style.display = "none";
-      chevronFilter && chevronFilter.classList.remove("rotated");
     }
   });
 
