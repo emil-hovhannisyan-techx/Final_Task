@@ -312,7 +312,9 @@ header li a {
   font-weight: 700;
   text-decoration: none;
 }
-
+.movie_title:hover {
+  color: rgba(var(--tmdbLightBlue), 1);
+}
 .release_date {
   color: #666;
   font-size: 0.9em;
